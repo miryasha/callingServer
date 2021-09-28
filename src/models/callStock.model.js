@@ -27,21 +27,21 @@ class CallStock  extends Base{
                 const time_frame = await data.map( tf => tf.time_frame)[i];
                 const cryptoDatabase_name = await data.map( dbn => dbn.database_name)[i]; 
                 // Decrypt database_name
-                const decryptDatabase_name  = await CryptoJS.AES.decrypt(cryptoDatabase_name, dbKey);
-                const database_name = await decryptDatabase_name.toString(CryptoJS.enc.Utf8);
+                //const decryptDatabase_name  = await CryptoJS.AES.decrypt(cryptoDatabase_name, dbKey);
+               // const database_name = await decryptDatabase_name.toString(CryptoJS.enc.Utf8);
     
                 const table_name = await data.map( tbl => tbl.table_name)[i]; 
                 const cryptoHost = await data.map( h => h.host)[i]; 
                 // Decrypt host
-                const decryptHost  = await CryptoJS.AES.decrypt(cryptoHost, dbKey);
-                const host = await decryptHost.toString(CryptoJS.enc.Utf8);
+                //const decryptHost  = await CryptoJS.AES.decrypt(cryptoHost, dbKey);
+                //const host = await decryptHost.toString(CryptoJS.enc.Utf8);
     
                 const port = await data.map( p => p.port)[i]; 
                 const user = await data.map( u => u.user)[i]; 
                 const cryptoPassword = await data.map( pass => pass.password)[i]; 
                 // Decrypt pass
-                const decryptPass  = await CryptoJS.AES.decrypt(cryptoPassword, dbKey);
-                const password = await decryptPass.toString(CryptoJS.enc.Utf8);
+                //const decryptPass  = await CryptoJS.AES.decrypt(cryptoPassword, dbKey);
+                //const password = await decryptPass.toString(CryptoJS.enc.Utf8);
     
                 const dbCongig = await mysql.createConnection({
         
