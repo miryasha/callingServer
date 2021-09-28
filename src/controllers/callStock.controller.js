@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const jobs = require('../config/croneJobs')
+const jobs = require('../config/croneJobs.config')
 const models = require('../models')
 const cronJob = require('cron').CronJob;
 
