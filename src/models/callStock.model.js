@@ -6,6 +6,8 @@ const fetch = require('node-fetch');
 require('dotenv').config();
 const key = process.env.ALPHA_KEY
 const dbKey = process.env.PASS_HASH_DATABASE
+
+
 class CallStock  extends Base{
 
   callStocks(){
