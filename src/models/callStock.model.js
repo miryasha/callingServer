@@ -45,11 +45,11 @@ class CallStock  extends Base{
     
                 const dbCongig = await mysql.createConnection({
         
-                  host: host,
-                  port: port,//port
-                  user: user,//username
-                  password: password,//password
-                  database: database_name//database
+                    host: cryptoHost,
+                    port: port,//port
+                    user: user,//username
+                    password: cryptoPassword,//password
+                    database: cryptoDatabase_name,//database
                   
                 });
                 
@@ -112,8 +112,8 @@ class CallStock  extends Base{
 
 
     findStockList(){
-    let sql = `SELECT * FROM call_criteria_stock_tbl`;
-    return this.query(sql);
+    
+    return this.query(`SELECT * FROM call_criteria_stock_tbl`);
            
      }
 
