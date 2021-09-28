@@ -10,16 +10,8 @@ router.use("/call", controllers.call)
 
 
 
-//===API===
-//Stock routes
-////////////===========
-router.use("/callcriteriastocktable", controllers.callCriteriaStockTable);
-router.use("/api/stock", controllers.stockApi);
-
-
-
 router.use("/", (req, res)=>{
-    res.send("Hi from StockApi")
+    res.send("Hi from callingServer")
 })
 
 

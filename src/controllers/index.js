@@ -1,5 +1,4 @@
 module.exports = {
-   stockApi : require("./stockApi.controller"),
-   callCriteriaStockTable : require("./callCriteriaStockTable.controler") 
+  call : require("./call.controller"), 
        
  }

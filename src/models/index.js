@@ -1,13 +1,11 @@
 const connection = require('../config/dataBase.config');
 
-const StockApi = require("./stockApi.model")
-const CallCriteriaStockTable = require("./callCriteriaStockTable.model")
+const CallStock = require("./callStock.model");
 
 
 
 module.exports = {
   
-  stockApi : new StockApi(connection),
-  callCriteriaStockTable : new CallCriteriaStockTable(connection),
+  callStock : new CallStock(connection), 
   
   }
