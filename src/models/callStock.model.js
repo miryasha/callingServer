@@ -68,8 +68,8 @@ class CallStock  extends Base{
                                 const high =  dataToArray[count][1]["2. high"];
                                 const low =  dataToArray[count][1]["3. low"];
                                 const closing =  dataToArray[count][1]["4. close"];
-                                                  console.log(symbol_date)
-                                new Promise((resolve, reject) => {
+                                                  
+                                return new Promise((resolve, reject) => {
     
                                       let sql =  `INSERT INTO ${table_name}  ( symbol, symbol_date, opening, high, low, closing) VALUES ("${symbol}","${symbol_date}", "${opening}" ,"${high}","${low}", "${closing}")`
                                       dbCongig.query(sql, function(err, rows){
@@ -78,14 +78,14 @@ class CallStock  extends Base{
                                         return reject(err); 
                                       }
                                       else {
-                                        resolve(data);
-                                        console.log(rows.affectedRows)
+
+                                        return resolve(data);
+                                        
                                       }
                                   })
                                   dbCongig.end()
                               }).catch(err => {
-                                res.send( {message: err } )
-                                res.status(500).end();
+                                return err
                               }); 
                                                                  
                     });//==end of second data
@@ -94,7 +94,7 @@ class CallStock  extends Base{
 
           } else {
 
-            return;
+            return { "message"  : "somthing went wrong on calling Stock models"};
 
           }
 
