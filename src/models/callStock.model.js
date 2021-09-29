@@ -71,10 +71,10 @@ class CallStock  extends Base{
                                 const high =  dataToArray[count][1]["2. high"];
                                 const low =  dataToArray[count][1]["3. low"];
                                 const closing =  dataToArray[count][1]["4. close"];
-                                console.log(symbol_date)            
+                                           
                                 return new Promise((resolve, reject) => {
     
-                                     // let sql =  `INSERT INTO ${table_name}  ( symbol, symbol_date, opening, high, low, closing) VALUES ("${symbol}","${symbol_date}", "${opening}" ,"${high}","${low}", "${closing}")`
+                                      let sql =  `INSERT INTO ${table_name}  ( symbol, symbol_date, opening, high, low, closing) VALUES ("${symbol}","${symbol_date}", "${opening}" ,"${high}","${low}", "${closing}")`
                                       dbCongig.query(sql, function(err, rows){
                                       if(err){ 
     
@@ -92,6 +92,7 @@ class CallStock  extends Base{
                               }); 
                                                                  
                     });//==end of second data
+
                }, 5000 * i);
              } // end of task
 
