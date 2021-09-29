@@ -15,6 +15,8 @@ class CallStock  extends Base{
     
     list.then( data => {
         const symbolsLength = data.map( s => s.symbol).length;
+        //Check if the list is not empty
+        
           if(symbolsLength !==0 ){
             for(let i = 0 ; i < symbolsLength ; i++){
               task(i);
@@ -53,8 +55,9 @@ class CallStock  extends Base{
                   
                 });
                 
-                const endPoint = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full&apikey=${key}`
-                const response = fetch(endPoint)
+                
+                 const endPoint = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full&apikey=${key}`
+                 const response = fetch(endPoint)
                         .then(res => res.json())
                            .then(data => {  
     
@@ -68,10 +71,10 @@ class CallStock  extends Base{
                                 const high =  dataToArray[count][1]["2. high"];
                                 const low =  dataToArray[count][1]["3. low"];
                                 const closing =  dataToArray[count][1]["4. close"];
-                                                  
+                                console.log(symbol_date)            
                                 return new Promise((resolve, reject) => {
     
-                                      let sql =  `INSERT INTO ${table_name}  ( symbol, symbol_date, opening, high, low, closing) VALUES ("${symbol}","${symbol_date}", "${opening}" ,"${high}","${low}", "${closing}")`
+                                     // let sql =  `INSERT INTO ${table_name}  ( symbol, symbol_date, opening, high, low, closing) VALUES ("${symbol}","${symbol_date}", "${opening}" ,"${high}","${low}", "${closing}")`
                                       dbCongig.query(sql, function(err, rows){
                                       if(err){ 
     
