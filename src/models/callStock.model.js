@@ -57,7 +57,7 @@ class CallStock  extends Base{
                 
                 
                  const endPoint = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full&apikey=${key}`
-                 const response = fetch(endPoint)
+                 const response = await fetch(endPoint)
                         .then(res => res.json())
                            .then(data => {  
     
