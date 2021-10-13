@@ -60,7 +60,7 @@ class CallStock  extends Base{
                  const response = await fetch(endPoint)
                         .then(res => res.json())
                            .then(data => {  
-    
+                            
                                 const count = 0;
                                 const symbol =  data["Meta Data"]["2. Symbol"];
                                 const ohlcData =  data["Time Series (Daily)"];
@@ -109,7 +109,7 @@ class CallStock  extends Base{
  )//end of then
     .catch(err => {
       console.log(err);
-      res.status(500).end();
+      
      });
 
   };//end of call stock
