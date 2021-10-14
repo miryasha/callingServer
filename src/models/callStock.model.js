@@ -21,7 +21,7 @@ class CallStock  extends Base{
       
         const symbolsLength = data.map( s => s.symbol).length;
         //Check if the list is not empty
-        console.log(symbolsLength)
+        
           if(symbolsLength !==0 ){
             for(let i = 0 ; i < symbolsLength ; i++){
               

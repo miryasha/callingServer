@@ -56,7 +56,7 @@ const startCallingStocks = () => {
     
         const job = new cronJob (jobs.stockJobs.pattern, 
             () => {
-              console.log("Im calling Stocks")
+              
               models.callStock.callStocks()
                           
                            
