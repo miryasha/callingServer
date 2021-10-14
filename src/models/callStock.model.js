@@ -2,8 +2,7 @@ const Base = require("./base.model");
 const CryptoJS = require("crypto-js");
 const mysql = require("mysql");
 const fetch = require('node-fetch');
-const axios = require('axios');
-const https = require('https')
+
 
 require('dotenv').config();
 const key = process.env.ALPHA_KEY
@@ -74,76 +73,30 @@ class CallStock  extends Base{
                   const high = await ohlcData["2. high"];
                   const low = await ohlcData["3. low"];
                   const closing = await ohlcData["4. close"];
-                  
-                  console.log(ohlcData)
+
+                  let sql =  `INSERT INTO ${table_name}  ( symbol, symbol_date, opening, high, low, closing) VALUES ("${metaSymbol}","${lastRefreshed}", "${opening}" ,"${high}","${low}", "${closing}")`
+                      await dbCongig.query(sql,function(err, rows){
+              
+                                    if(err){ 
+
+                                      console.log(err); 
+                                    }
+                                    else {
+
+                                      console.log(rows.insertId)
+                                      
+                                    }                           
+                    })
+                    dbCongig.end()
                 }
+                
                 
                 getFirstUserData()
                 .catch(err => {
                   console.log(err);
                   
                 })
-                //  const endPoint = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full&apikey=${key}`
-                //  const req = https.request(endPoint, res => {
-                //   console.log(`statusCode: ${res.statusCode}`)
-                   
-
-                //   res.on('data', d => {
-                //    // process.stdout.write(d)
-                //    console.log(json(d))
-                    
-                    
-                //   })
-                // })
                 
-                // req.on('error', error => {
-                //   console.error(error)
-                // })
-                
-                // req.end()
-
-
-
-
-                //  const response =   fetch(endPoint)
-                //  const dataJson = response.then(res => res.json())
-                //  console.log(response)
-                //           // .then(data => {  
-                            
-                //                 //const metaSymbol =  data["Meta Data"]["2. Symbol"];
-                //                 const lastRefreshed = dataJson["Meta Data"]['3. Last Refreshed'];
-                //                 const ohlcData =  dataJson["Time Series (Daily)"][lastRefreshed];
-                               
-                //                 const opening =  ohlcData["1. open"];
-                //                 const high =  ohlcData["2. high"];
-                //                 const low =  ohlcData["3. low"];
-                //                 const closing =  ohlcData["4. close"];
-                                           
-                //                 return new Promise((resolve, reject) => {
-    
-                //                       let sql =  `INSERT INTO ${table_name}  ( symbol, symbol_date, opening, high, low, closing) VALUES ("${symbol}","${lastRefreshed}", "${opening}" ,"${high}","${low}", "${closing}")`
-                //                        dbCongig.query(sql, function(err, rows){
-                //                       if(err){ 
-    
-                //                         console.log(err); 
-                //                       }
-                //                       else {
-
-                //                         return resolve(data);
-                                        
-                //                       }
-                //                   })
-                //                   dbCongig.end()
-                //               })
-                //               .catch(err => {
-                //                 console.log(err);
-                                
-                //               })
-                                                                 
-                   // })
-                    
-                      
-                    // });//==end of second data
 
                }, 5000 * i);
              } // end of task
