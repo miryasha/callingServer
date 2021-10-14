@@ -5,7 +5,7 @@
 ///“At 17:00 on every day-of-week from Monday through Friday.”
 const stockJobs = 
     {
-        pattern: '*/10 * * * * 1-5',
+        pattern: '*/25 * * * * 1-5',
         timeZone: "US/Eastern",
         symbol: "stock",
         message: 'this runs ever 40 seconds',
