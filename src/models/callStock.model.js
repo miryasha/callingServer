@@ -61,7 +61,7 @@ class CallStock  extends Base{
                   
                 });
 
-                const getFirstUserData = async () => {
+                const getStockData = async () => {
                   
                   const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full&apikey=${key}`) // get users list
                   const dataJson = await response.json() // parse JSON
@@ -91,7 +91,7 @@ class CallStock  extends Base{
                 }
                 
                 
-                getFirstUserData()
+                getStockData()
                 .catch(err => {
                   console.log(err);
                   
