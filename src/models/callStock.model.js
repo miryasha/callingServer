@@ -74,24 +74,61 @@ class CallStock  extends Base{
                   const low = await ohlcData["3. low"];
                   const closing = await ohlcData["4. close"];
 
-                  let sql =  `INSERT INTO ${table_name}  ( symbol, symbol_date, opening, high, low, closing) VALUES ("${metaSymbol}","${lastRefreshed}", "${opening}" ,"${high}","${low}", "${closing}")`
-                      await dbCongig.query(sql,function(err, rows){
-              
-                                    if(err){ 
+                  
+                 const findIfDuplicate = async (dbCongig , lastRefreshed) => {
+                       let sqlEq = `SELECT symbol_date FROM ${table_name} WHERE symbol_date="${lastRefreshed}"`
+                       await dbCongig.query(sqlEq,function(err, rows){
+                  
+                        if(err){ 
 
-                                      console.log(err); 
-                                    }
-                                    else {
+                          console.log(err);
+                          // console.log(err.code);  
+                          // console.log(err.fatal); 
+                          
 
-                                      console.log(rows.insertId)
-                                      
-                                    }                           
-                    })
-                    dbCongig.end()
+                        }  else {
+
+                          
+                          const insertData = async (lastRefreshed)=>{
+                              
+                              let sql =  `INSERT INTO ${table_name}  ( symbol, symbol_date, opening, high, low, closing) VALUES ("${metaSymbol}","${lastRefreshed}", "${opening}" ,"${high}","${low}", "${closing}")`
+                              
+                                 await dbCongig.query(sql,function(err, rows){
+                          
+                                                if(err){ 
+
+                                                  console.log(err); 
+                                                  
+                                                  
+                                                }
+                                                else {
+
+                                                  console.log(rows.insertId)
+                                                  
+                                                }                           
+                                })
+                                dbCongig.end()
+                          }
+                          //check if there is any duplication in db first
+                          rows.length !== 0 ?  insertData(lastRefreshed).catch(err=>{console.log(err)}) : dbCongig.end() ;
+                                              
+                        }                           
+                      })
+                      
+                     // dbCongig.end()
+                    
+                  }
+                  
+                  findIfDuplicate(dbCongig , lastRefreshed)
+                  .catch(err => {
+                    console.log(err);
+                    
+                  })
+
+                  
                 }
                 
-                
-                getStockData()
+                 getStockData()
                 .catch(err => {
                   console.log(err);
                   
@@ -125,6 +162,8 @@ class CallStock  extends Base{
     return this.query(`SELECT * FROM call_criteria_stock_tbl`);
            
      }
+
+     
 }
 
   module.exports = CallStock;              
