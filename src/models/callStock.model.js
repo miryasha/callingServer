@@ -77,6 +77,7 @@ class CallStock  extends Base{
                   
                  const findIfDuplicate = async (dbCongig , lastRefreshed) => {
                        let sqlEq = `SELECT symbol_date FROM ${table_name} WHERE symbol_date="${lastRefreshed}"`
+                       
                        await dbCongig.query(sqlEq,function(err, rows){
                   
                         if(err){ 
@@ -110,7 +111,7 @@ class CallStock  extends Base{
                                 dbCongig.end()
                           }
                           //check if there is any duplication in db first
-                          rows.length !== 0 ?  insertData(lastRefreshed).catch(err=>{console.log(err)}) : dbCongig.end() ;
+                          rows.length !== 0 ?  dbCongig.end() : insertData(lastRefreshed).catch(err=>{console.log(err)});
                                               
                         }                           
                       })
