@@ -54,18 +54,18 @@ router.post('/currency', currencyCaller)
 
 const startCallingStocks = () => {
     
-        // const job = new cronJob (jobs.stockJobs.pattern, 
-        //     () => {
+        const job = new cronJob (jobs.stockJobs.pattern, 
+            () => {
               
               models.callStock.callStocks()
                           
                            
-        //     }, null, true, jobs.stockJobs.timeZone
-        // )
-        // job.start()          
+            }, null, true, jobs.stockJobs.timeZone
+        )
+        job.start()          
  };
 
- startCallingStocks()
+
 
  const startCallingCurrencies = () => {
     

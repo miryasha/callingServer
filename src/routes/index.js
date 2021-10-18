@@ -7,6 +7,7 @@ const limiter = require("../config/apiLimiter.confic");
 //start calling Daily
 //================
 router.use("/call", controllers.call)
+router.use("/callwithcron", controllers.callWithCron)
 
 
 

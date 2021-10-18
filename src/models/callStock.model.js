@@ -111,7 +111,7 @@ class CallStock  extends Base{
                                 dbCongig.end()
                           }
                           //check if there is any duplication in db first
-                          rows.length !== 0 ?  dbCongig.end() : insertData(lastRefreshed).catch(err=>{console.log(err)});
+                          rows.length !== 0 ? dbCongig.end() : insertData(lastRefreshed).catch(err=>{console.log(err)}) ;
                                               
                         }                           
                       })

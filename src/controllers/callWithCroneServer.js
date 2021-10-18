@@ -1,10 +1,20 @@
-const models = require('../models')
 const router = require("express").Router();
+
+const models = require('../models')
+
+ 
+    
+    
+
+ 
 
 const startCallingStocks = () => {
     
-    models.callStock.callStocks()
-              
-};
+  models.callStock.callStocks()
+      
+ };
 
-startCallingStocks()
+ startCallingStocks()
+
+ 
+module.exports = router
